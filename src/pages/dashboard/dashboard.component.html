@@ -1,0 +1,44 @@
+<h1>Workflows</h1>
+<div class="align-center">
+    <button class="btn btn-action" (click)="add()">Add Workflow</button>
+</div>
+<ul class="workflows">
+    <li *ngFor="let workflow of workflows" class="workflow">
+        <div class="workflow-sync">
+            <img src="assets/svgs/jira.svg" height="20">
+
+            <i *ngIf="workflow.syncType === 'Two-way sync'" class="workflow-arrow fa fa-arrows-h" aria-hidden="true"></i>
+            <i *ngIf="workflow.syncType === 'JIRA to Smartsheet'" class="workflow-arrow fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i *ngIf="workflow.syncType === 'Smartsheet to JIRA'" class="workflow-arrow fa fa-long-arrow-left" aria-hidden="true"></i>
+
+            <img src="assets/svgs/smartsheet.svg" height="20">
+        </div>
+        <div class="workflow-title">
+            <h2>
+                <a [routerLink]="['/edit', workflow.id]" class="workflow-name">{{workflow.name}}</a>
+                <span *ngIf="workflow.interval" class="interval-badge">{{ workflow.interval }}</span>
+            </h2>
+            <p *ngIf="workflow.lastSync" class="last-sync">Last sync: {{workflow.lastSync | date: 'd MMM, h:mma'}}</p>
+        </div>
+        <div class="workflow-status">
+            <label class="toggle">
+                <input type="checkbox" *ngIf="workflow.active" checked (change)="toggle(workflow); $event.stopPropagation()">
+                <input type="checkbox" *ngIf="!workflow.active" (change)="toggle(workflow); $event.stopPropagation()">
+                <div class="toggle-slider"></div>
+                <div class="toggle-on">On</div>
+                <div class="toggle-off">Off</div>
+            </label>
+        </div>
+        <div class="workflow-actions">
+            <button (click)="sync(workflow, $event)" class="workflow-sync-now" title="Sync workflow">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+            <a [routerLink]="['/edit', workflow.id]" class="workflow-edit" title="Edit workflow">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+            <button (click)="delete(workflow); $event.stopPropagation()" class="workflow-delete" title="Delete workflow">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+        </div>
+    </li>
+</ul>
