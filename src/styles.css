@@ -250,7 +250,7 @@ input {
     pointer-events: none;
     position: absolute;
     right: 10px;
-    top: 7px
+    top: 4px
 }
 
 .select-wrapper select {
@@ -709,11 +709,11 @@ dd {
 }
 
 .form-label {
-    width: 35%
+    width: 30%
 }
 
 .form-control {
-    width: 65%
+    width: 70%
 }
 
 .form-navigation {
@@ -1227,4 +1227,38 @@ dd {
 
 .profile_form_text::after {
     clear: both
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    z-index: 9999;
+    left: 45%;
+    top: 40%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: block; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 9998; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+.no-padding{
+    padding: 0 !important;
 }

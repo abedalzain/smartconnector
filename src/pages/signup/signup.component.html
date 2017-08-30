@@ -9,12 +9,12 @@
         
         <div class="form-group">
             <div class=" login-inputs">
-                <input type="text" placeholder="First Name" name="firstName" (keyup.enter)="signup()" [(ngModel)]="userData.firstName"/>
+                <input type="text" placeholder="First Name" name="firstName" (keyup.enter)="signup()" [(ngModel)]="userData.first_name"/>
             </div>
         </div>
         <div class="form-group">
             <div class=" login-inputs">
-                <input type="text" placeholder="Last Name" name="lastName" (keyup.enter)="signup()" [(ngModel)]="userData.lastName"/>
+                <input type="text" placeholder="Last Name" name="lastName" (keyup.enter)="signup()" [(ngModel)]="userData.last_name"/>
             </div>
         </div>
         <div class="form-group">
@@ -35,6 +35,16 @@
         <div class="form-group">
             <div class=" login-inputs">
                 <input type="email" placeholder="Email" name="email" (keyup.enter)="signup()" [(ngModel)]="userData.email"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class=" login-inputs">
+                <input type="password" placeholder="Password" name="password" (keyup.enter)="signup()" [(ngModel)]="userData.password"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class=" login-inputs">
+                <input type="password" placeholder="Password Confirmation" name="passwordConfirmation" (keyup.enter)="signup()" [(ngModel)]="passwordConfirmation"/>
             </div>
         </div>
         <div class="form-group">

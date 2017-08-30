@@ -33,6 +33,7 @@ export class AuthService {
             signInPath:"authentication",
             signOutPath:'sign_out',
             signInRedirect:'/restricted',
+            registerAccountPath:'signup',
             globalOptions: {
                 headers: {
                     'Content-Type':     'application/json',
@@ -62,12 +63,15 @@ export class AuthService {
         let userData =localStorage.getItem('userData');
         if(userData != null){
             if(userData.length >0){
-                this.LoginStatusSet(true);
+                // this.LoginStatusSet(true);
+                return true;
             }else{
-                this.LoginStatusSet(false);
+                // this.LoginStatusSet(false);
+                return false;
             }
         }else{
-            this.LoginStatusSet(false);
+            // this.LoginStatusSet(false);
+            return false;
         }
     }
     public LoginStatusSet(bool:boolean){
@@ -75,50 +79,13 @@ export class AuthService {
     }
     
     public login(data:any){
-        // console.log(this.http.post(this.baseUrl+"/auth/sign_in",data,this.options));        
-        // this.http.post(this.baseUrl+"/auth/sign_in",data,this.options)
-        // .subscribe((res:Response)=>{
-        //     console.log("inside service http response is ",res);
-        //     this.LoginStatusSet(true);
-        //     localStorage.setItem("userData",JSON.stringify(res.json().data));
-        //     this.refresher.refreshSubscription();
-        //     setTimeout(()=> {
-        //         this.router.navigateByUrl("/dashboard")
-        //     }, 50);
-        // });
-        // this._tokenService.request({
-        //     url:this.baseUrl+ "/auth/sign_in",
-        //     method:RequestMethod.Post,
-        //     body:JSON.stringify(data),
-        //     withCredentials:true
-        // }).subscribe(
-        //     res => {
-        //         console.log(res);
-        //         this.LoginStatusSet(true);
-        //         localStorage.setItem("userData",JSON.stringify(res.json().data));
-        //         this.refresher.refreshSubscription();
-        //         setTimeout(()=> {
-        //             this.router.navigateByUrl("/dashboard")
-        //         }, 50);
-                
-        //     },
-        //     error =>    console.log(error)
-        // );
-        this._tokenService.signIn(data).subscribe(
-            res => {
-                console.log(res);
-                this.LoginStatusSet(true);
-                localStorage.setItem("userData",JSON.stringify(res.json().data));
-                this.refresher.refreshSubscription();
-                setTimeout(()=> {
-                    this.router.navigateByUrl("/dashboard");
-                }, 50);
-            },
-            error =>    console.log(error)
-        );
-        console.log(this._tokenService);
+        return this._tokenService.signIn(data)
         
     }
+    public register(registerData){
+        return this._tokenService.registerAccount(registerData);
+    }
+
     public logout(){
         // let h =JSON.parse(localStorage.getItem("headers"));
         // let headers = new Headers({ 'uid': h.uid},);
@@ -128,5 +95,11 @@ export class AuthService {
         return this._tokenService.signOut();
     }
     
-    
+    getUserToken(){
+        let data = localStorage.getItem("userData");
+        let token:string = JSON.parse(data).id_token;
+        // console.log(JSON.parse(data));
+        // console.log(token);
+        return token;
+    }
 }

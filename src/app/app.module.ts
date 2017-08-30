@@ -1,3 +1,4 @@
+import { ProfileService } from './../services/profile.service';
 import { SubscriptionComponent } from '../pages/subscription/subscription.component';
 
 // import { Angular2TokenService }                   from 'angular2-token';
@@ -25,7 +26,9 @@ import { SignUpComponent }                        from "../pages/signup/signup.c
 import { Refresher }                              from "../services/refresher.service";
 import { Angular2TokenService }                   from "../services/authToken.service";
 import { MyAccountComponent }                     from "../pages/myaccount/myaccount.component";
-import { ProfileComponent } from "../pages/profile/profile.component";
+import { ProfileComponent }                       from "../pages/profile/profile.component";
+import { LoadingService }                         from "../services/loading.service";
+import { CanActivateViaAuthGuard } from "../services/canActive.service";
 
 @NgModule({
   imports: [
@@ -53,7 +56,16 @@ import { ProfileComponent } from "../pages/profile/profile.component";
     AuthService,
     Refresher,
     Angular2TokenService ,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    ProfileService,
+    LoadingService,
+    CanActivateViaAuthGuard,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: 'CanAlwaysActivateGuard',
+      useValue: () => {
+        return true;
+      }
+    }
   ],
   bootstrap: [ AppComponent ]
 })

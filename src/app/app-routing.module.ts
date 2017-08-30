@@ -10,13 +10,42 @@ import { LoginComponent }          from "../pages/login/login.component";
 import { SignUpComponent }         from "../pages/signup/signup.component";
 import { SubscriptionComponent }   from "../pages/subscription/subscription.component";
 import { ProfileComponent }        from "../pages/profile/profile.component";
+import { CanActivateViaAuthGuard } from "../services/canActive.service";
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'edit/:id', component: WorkflowEditComponent },
-    { path: 'detail/:id', component: WorkflowDetailComponent },
-    { path: 'workflows', component: WorkflowsComponent },
+
+    { 
+        path: 'dashboard', 
+        component: DashboardComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ] 
+    },
+
+    { 
+        path: 'edit/:id', 
+        component: WorkflowEditComponent,
+        canActivate: [
+            CanActivateViaAuthGuard
+        ] 
+    },
+
+    { 
+        path: 'detail/:id', 
+        component: WorkflowDetailComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ] 
+    },
+    { 
+        path: 'workflows', 
+        component: WorkflowsComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+    },
+
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
     {
@@ -24,11 +53,15 @@ const routes: Routes = [
         component: LoginComponent,
         canActivate: [Angular2TokenService]
     },
-    { path:'myaccount',component:MyAccountComponent,
+    { 
+        path:'myaccount',component:MyAccountComponent,
         children: [
             { path: '', redirectTo: 'subscriptions', pathMatch: 'full' },
             { path: 'subscriptions', component: SubscriptionComponent },
             { path: 'profile', component: ProfileComponent }
+        ],
+        canActivate: [
+          CanActivateViaAuthGuard
         ]
     }
 
