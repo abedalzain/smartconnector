@@ -59,13 +59,7 @@ import { CanActivateViaAuthGuard } from "../services/canActive.service";
     ProfileService,
     LoadingService,
     CanActivateViaAuthGuard,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: 'CanAlwaysActivateGuard',
-      useValue: () => {
-        return true;
-      }
-    }
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [ AppComponent ]
 })
