@@ -11,6 +11,7 @@ import { SignUpComponent }         from "../pages/signup/signup.component";
 import { SubscriptionComponent }   from "../pages/subscription/subscription.component";
 import { ProfileComponent }        from "../pages/profile/profile.component";
 import { CanActivateViaAuthGuard } from "../services/canActive.service";
+import { CanDeactivateViaAuthGuard } from "../services/canDeactive.service";
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -46,8 +47,16 @@ const routes: Routes = [
         ]
     },
 
-    { path: 'login', component: LoginComponent },
-    { path: 'signup', component: SignUpComponent },
+    { 
+        path: 'login', 
+        component: LoginComponent,
+        canActivate:[CanDeactivateViaAuthGuard] 
+    },
+    { 
+        path: 'signup', 
+        component: SignUpComponent,
+        canActivate:[CanDeactivateViaAuthGuard] 
+    },
     {
         path: 'restricted',
         component: LoginComponent,

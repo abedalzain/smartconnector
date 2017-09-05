@@ -809,18 +809,29 @@ dd {
     padding: 6px;
 }
 
+/* 
 .fa.fa-user-circle {
-    font-size: 1.5em
+    font-size: 1.1em;
+} 
+.fa.fa-cog {
+    font-size: 1.2em;
 }
-
-/* .fa.fa-cog {
-    font-size: 1.5em
-} */
-
+.fa.fa-question-circle-o{
+    font-size: 1.2em !important;
+} 
 #account-section>.account-section-item>.fa.fa-question-circle-o {
     font-size: 1.5em
+} 
+*/
+.navbar-nav li.account-section-item a{
+    padding-left: 0;
+    padding-right: 0;
+    color: white;
 }
-
+.navbar-nav>li.account-section-item>a:focus,.navbar-nav>li.account-section-item>a:hover,
+.navbar-nav>li.account-section-item>a:visited,.navbar-nav>li.account-section-item>a:active{
+    color:#eee;
+}
 #account-section:focus {
     outline: none
 }
