@@ -4,27 +4,50 @@
 </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Name:</span>
-        <input class="profile_form_input" type="text" placeholder="Name" name="name"/>
+        <!-- <span *ngIf="!editBool.name" class="profile_form_text">
+            <b>{{proflie?.first_name}}&nbsp;{{proflie?.last_name}}&nbsp;</b>
+            <a class="clickable" (click)="editBool.name = !editBool.name">change</a>
+        </span>         -->
+        <input  class="profile_form_input" type="text" [(ngModel)]="currentUser.name" placeholder="Name" name="name"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Email:</span>
-        <span class="profile_form_text">{{currentUser.currentUserData.email}} &nbsp;<a class="clickable">Change</a></span>
+        <!-- <span *ngIf="!editBool.email" class="profile_form_text">
+            <b>{{proflie?.email}}</b>&nbsp;
+            <a  class="clickable" (click)="editBool.email = !editBool.email">Change</a>
+        </span> -->
+        <input class="profile_form_input" type="text" [(ngModel)]="currentUser.email" placeholder="Email" name="email"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Password:</span>
-        <span class="profile_form_text"><a class="clickable">Change</a></span>
+        <span *ngIf="!editBool.password" class="profile_form_text">
+            <a class="clickable" (click)="editBool.password = !editBool.password">Change</a>
+        </span>
+        <input *ngIf="editBool.password" class="profile_form_input" type="password" [(ngModel)]="currentUser.password" placeholder="Password" name="password"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Company:</span>
-        <input class="profile_form_input" type="text" placeholder="Company" name="company"/>
+        <!-- <span *ngIf="!editBool.company" class="profile_form_text">
+            <b>{{proflie?.company}}</b>&nbsp;
+            <a class="clickable" (click)="editBool.company = !editBool.company">Change</a>
+        </span> -->
+        <input class="profile_form_input" type="text" [(ngModel)]="currentUser.company" placeholder="Company" name="company"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Role:</span>
-        <input class="profile_form_input" type="text" placeholder="Role" name="role"/>
+        <!-- <span *ngIf="!editBool.role" class="profile_form_text">
+            <b>{{proflie?.role}}</b>
+            <a class="clickable" (click)="editBool.role = !editBool.role">Change</a>
+        </span> -->
+        <input class="profile_form_input" type="text" [(ngModel)]="currentUser.role" placeholder="Role" name="role"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Phone:</span>
-        <input class="profile_form_input" type="text" placeholder="Phone" name="number"/>
+        <!-- <span *ngIf="!editBool.phone" class="profile_form_text">
+            <b>{{proflie?.phone}}</b>
+            <a class="clickable" (click)="editBool.phone = !editBool.phone">Change</a>
+        </span> -->
+        <input class="profile_form_input" type="text" [(ngModel)]="currentUser.phone" placeholder="Phone" name="phone"/>
     </div>
     <div class="inner_profile_row">
         <span class="profile_form_tag">Time Zone:</span>

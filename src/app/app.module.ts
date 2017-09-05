@@ -29,6 +29,7 @@ import { MyAccountComponent }                     from "../pages/myaccount/myacc
 import { ProfileComponent }                       from "../pages/profile/profile.component";
 import { LoadingService }                         from "../services/loading.service";
 import { CanActivateViaAuthGuard } from "../services/canActive.service";
+import { CanDeactivateViaAuthGuard } from "../services/canDeactive.service";
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { CanActivateViaAuthGuard } from "../services/canActive.service";
     ProfileService,
     LoadingService,
     CanActivateViaAuthGuard,
+    CanDeactivateViaAuthGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [ AppComponent ]
